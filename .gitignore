@@ -1,3 +1,4 @@
 /cifar-10-batches-py
 /Stanford_paper_code
 *data/
+*saved_model/
