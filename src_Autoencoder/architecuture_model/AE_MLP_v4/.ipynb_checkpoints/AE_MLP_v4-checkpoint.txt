@@ -1,0 +1,41 @@
+## Not too much difference with v3
+
+class MLP_net(nn.Module):
+    def __init__(self):
+        # Input layer is 1024, since CIFAR-10 gray_image is 32x32
+        # Output layer is 3072, since CIFAR-10 gray_image is 32x32x3
+        super(MLP_net, self).__init__()
+        
+        self.layer1 = nn.Linear(1024,512)
+        self.bn1 = nn.BatchNorm1d(512)
+        self.layer2 = nn.Linear(512,256)
+        self.bn2 = nn.BatchNorm1d(256)
+        self.layer3 = nn.Linear(256,128)
+        self.bn3 = nn.BatchNorm1d(128)
+        self.layer4 = nn.Linear(128,256)
+        self.bn4 = nn.BatchNorm1d(256)
+        self.layer5 = nn.Linear(256,512)
+        self.bn5 = nn.BatchNorm1d(512)
+        self.layer6 = nn.Linear(512,1024)
+        self.bn6 = nn.BatchNorm1d(1024)
+        self.layer7 = nn.Linear(1024,3072)
+
+        
+    def forward(self, x):
+        # convert tensor (4, 1, 32, 32) --> (4, 1*32*32)
+        x = x.view(x.size(0), -1)
+        
+        x = self.layer1(x)
+        x = self.bn1(x)
+        x = self.layer2(x)
+        x = self.bn2(x)
+        x = self.layer3(x)
+        x = self.bn3(x)
+        x = self.layer4(x)
+        x = self.bn4(x)
+        x = self.layer5(x)
+        x = self.bn5(x)
+        x = self.layer6(x)
+        x = self.bn6(x)
+        x = self.layer7(x)
+        return x

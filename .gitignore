@@ -2,3 +2,7 @@
 /Stanford_paper_code
 *data/
 *saved_model/
+*png
+
+/src_Kaggle/trainData
+/src_Kaggle/testData
